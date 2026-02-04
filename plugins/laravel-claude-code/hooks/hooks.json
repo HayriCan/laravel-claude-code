@@ -1,6 +1,50 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh"
+          }
+        ],
+        "description": "Initialize Laravel context on session start"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"migrate:fresh|migrate:reset|db:wipe\"",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "DANGEROUS: This command will DELETE ALL DATA. Before proceeding: 1) Is this a development environment? 2) Is this intentional? 3) Is there a backup? If production or uncertain, STOP and ask the user first."
+          }
+        ],
+        "description": "Warn before destructive database commands"
+      },
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"--force\" && tool_input.command matches \"migrate|db:seed\"",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "WARNING: --force flag detected. This bypasses production safeguards. Confirm: 1) Is this intentional? 2) Is the environment correct? Only proceed if explicitly requested by user."
+          }
+        ],
+        "description": "Warn before force operations"
+      },
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"tinker\" && tool_input.command matches \"delete|truncate|drop\"",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "DANGEROUS: Destructive operation in tinker detected. This will permanently delete data. Confirm with user before proceeding."
+          }
+        ],
+        "description": "Warn before destructive tinker commands"
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "tool == \"Write\" && tool_input.file_path matches \"\\\\.php$\"",
@@ -41,6 +85,16 @@
           }
         ],
         "description": "Check Migration best practices"
+      },
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"php artisan test\" && tool_output matches \"FAIL\"",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Tests failed. Before proceeding, use the laravel-systematic-debugging skill to investigate the root cause. Do not attempt random fixes."
+          }
+        ],
+        "description": "Guide debugging on test failure"
       }
     ]
   }
