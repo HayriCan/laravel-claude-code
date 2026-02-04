@@ -5,8 +5,8 @@
   "author": {
     "name": "Hayri Can Barcin"
   },
-  "homepage": "https://github.com/barcin/laravel-claude-code",
-  "repository": "https://github.com/barcin/laravel-claude-code",
+  "homepage": "https://github.com/HayriCan/laravel-claude-code",
+  "repository": "https://github.com/HayriCan/laravel-claude-code",
   "license": "MIT",
   "keywords": [
     "laravel",
@@ -17,5 +17,12 @@
     "code-review",
     "testing",
     "optimization"
+  ],
+  "skills": ["./skills/", "./commands/"],
+  "agents": [
+    "./agents/laravel-reviewer.md",
+    "./agents/eloquent-expert.md",
+    "./agents/security-auditor.md",
+    "./agents/pest-expert.md"
   ]
 }

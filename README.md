@@ -1,6 +1,16 @@
-# Laravel Claude Code Plugin
+# Laravel Claude Code Marketplace
 
-> Claude Code plugin for Laravel development with code review, Eloquent optimization, security auditing, and Pest testing support.
+> Claude Code plugin marketplace for Laravel development with code review, Eloquent optimization, security auditing, and Pest testing support.
+
+## Installation
+
+```bash
+# Add marketplace
+claude /marketplace add HayriCan/laravel-claude-code
+
+# Install plugin
+claude /plugin install laravel-claude-code@laravel-claude-code
+```
 
 ## Features
 
@@ -8,12 +18,6 @@
 - **5 Slash Commands**: /laravel-review, /eloquent-optimize, /security-audit, /test-generate, /make-feature
 - **3 Skill Categories**: design-patterns, eloquent, testing
 - **Laravel Best Practices**: Conventions and security rules built-in
-
-## Installation
-
-```bash
-claude /plugin install github:barcin/laravel-claude-code
-```
 
 ## Quick Start
 
@@ -74,6 +78,25 @@ claude /plugin install github:barcin/laravel-claude-code
 ### Testing
 - Pest PHP fundamentals
 - Feature test patterns
+
+## Directory Structure
+
+```
+laravel-claude-code/
+├── .claude-plugin/
+│   └── marketplace.json
+├── plugins/
+│   └── laravel-claude-code/
+│       ├── .claude-plugin/
+│       │   └── plugin.json
+│       ├── agents/
+│       ├── commands/
+│       ├── hooks/
+│       ├── rules/
+│       └── skills/
+├── LICENSE
+└── README.md
+```
 
 ## Requirements
 

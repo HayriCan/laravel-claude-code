@@ -1,0 +1,23 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "laravel-claude-code",
+  "description": "Laravel development plugins for Claude Code - code review, Eloquent optimization, security auditing, and Pest testing",
+  "owner": {
+    "name": "Hayri Can Barcin",
+    "url": "https://github.com/HayriCan"
+  },
+  "plugins": [
+    {
+      "name": "laravel-claude-code",
+      "description": "Laravel development plugin with code review, Eloquent optimization, security auditing, and Pest testing support",
+      "version": "1.0.0",
+      "author": {
+        "name": "Hayri Can Barcin",
+        "url": "https://github.com/HayriCan"
+      },
+      "source": "./plugins/laravel-claude-code",
+      "category": "development",
+      "homepage": "https://github.com/HayriCan/laravel-claude-code"
+    }
+  ]
+}
