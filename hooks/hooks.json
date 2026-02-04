@@ -1,0 +1,40 @@
+{
+  "hooks": [
+    {
+      "matcher": "event == \"PostToolUse\" && tool == \"Write\" && tool_input.file_path matches \".*\\\\.php$\"",
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "A PHP file was written. Briefly check for Laravel best practices: 1) N+1 query patterns (loops accessing relationships without eager loading)? 2) Mass assignment vulnerability ($request->all() or $guarded = [])? 3) Missing input validation? Only mention if critical issues found."
+        }
+      ]
+    },
+    {
+      "matcher": "event == \"PostToolUse\" && tool == \"Write\" && tool_input.file_path matches \"app/Models/.*\\\\.php$\"",
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "A Model file was written. Check: 1) Is $fillable defined (not $guarded = [])? 2) Are relationships properly typed? 3) Are $casts defined for dates/arrays/booleans? Only flag critical issues."
+        }
+      ]
+    },
+    {
+      "matcher": "event == \"PostToolUse\" && tool == \"Write\" && tool_input.file_path matches \"app/Http/Controllers/.*\\\\.php$\"",
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "A Controller was written. Check: 1) Is it using Form Requests for validation? 2) Are methods under 30 lines? 3) Is authorization handled (Policy or Gate)? Only flag critical issues."
+        }
+      ]
+    },
+    {
+      "matcher": "event == \"PostToolUse\" && tool == \"Write\" && tool_input.file_path matches \"database/migrations/.*\\\\.php$\"",
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "A Migration was written. Check: 1) Are foreign keys indexed? 2) Is there a down() method for rollback? 3) Are nullable columns explicitly marked? Only flag issues."
+        }
+      ]
+    }
+  ]
+}

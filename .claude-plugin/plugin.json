@@ -1,0 +1,21 @@
+{
+  "name": "laravel-claude-code",
+  "version": "1.0.0",
+  "description": "Laravel development plugin with code review, Eloquent optimization, security auditing, and Pest testing support",
+  "author": {
+    "name": "Hayri Can Barcin"
+  },
+  "homepage": "https://github.com/barcin/laravel-claude-code",
+  "repository": "https://github.com/barcin/laravel-claude-code",
+  "license": "MIT",
+  "keywords": [
+    "laravel",
+    "php",
+    "eloquent",
+    "pest",
+    "security",
+    "code-review",
+    "testing",
+    "optimization"
+  ]
+}
